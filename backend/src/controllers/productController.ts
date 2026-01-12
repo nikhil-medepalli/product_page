@@ -70,6 +70,8 @@ export const updateProduct = async (req: Request, res: Response) => {
         const id = req.params.id as string;
         const {title, description, imageUrl} = req.body
 
+        if(!title || !description || !imageUrl) return res.status(400).json({error: "Missing required fields"})
+
         const existingProduct = await queries.getProductById(id)
 
         if(!existingProduct) return res.status(404).json({error: "Product not found"})
