@@ -1,7 +1,12 @@
 import express from "express";
 import cors from "cors"
+
 import { ENV } from "./config/env";
 import { clerkMiddleware } from "@clerk/express";
+
+import userRouter from "./routes/userRouter";
+import productRouter from "./routes/productRouter";
+import commentRouter from "./routes/commentRouter";
 
 const app = express();
 
@@ -20,6 +25,10 @@ app.get("/", (req, res) => {
     },
   });
 });
+
+app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
+app.use("/api/comments", commentRouter);
 
 app.listen(ENV.PORT, () => {
   console.log(`Server is up and running on port:${ENV.PORT}`);
