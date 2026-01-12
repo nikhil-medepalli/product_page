@@ -38,7 +38,7 @@ export const deleteComment = async (req: Request, res: Response) => {
         const existingComment = await queries.getCommentById(commentId)
         if(!existingComment) return res.status(404).json({error: "Comment not found"})
 
-        if(userId !== existingComment.userId) return res.status(401).json({error: "Unauthorized"})
+        if(userId !== existingComment.userId) return res.status(403).json({error: "Forbidden"})
 
         await queries.deleteComment(commentId)
 

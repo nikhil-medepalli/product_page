@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
     endpoints: {
       users: "/api/users",
       products: "/api/products",
-      comments: "api/comments",
+      comments: "/api/comments",
     },
   });
 });

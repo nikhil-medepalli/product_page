@@ -74,7 +74,7 @@ export const updateProduct = async (req: Request, res: Response) => {
 
         if(!existingProduct) return res.status(404).json({error: "Product not found"})
 
-        if(userId !== existingProduct.userId) return res.status(401).json({error: "Unauthorized"})
+        if(userId !== existingProduct.userId) return res.status(403).json({error: "Forbidden"})
 
         const updatedProduct = await queries.updateProduct(id, {
             title,
@@ -99,7 +99,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
 
         if(!existingProduct) return res.status(404).json({error: "Product not found"})
 
-        if(userId !== existingProduct.userId) return res.status(401).json({error: "Unauthorized"})
+        if(userId !== existingProduct.userId) return res.status(403).json({error: "Forbidden"})
 
         await queries.deleteProduct(id)
 
