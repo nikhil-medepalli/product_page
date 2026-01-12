@@ -9,7 +9,7 @@ const Navbar = () => {
     
   return (
     <div className="navbar bg-base-300">
-        <div className="max-w-9xl mx-auto w-full px-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto w-full px-4 flex justify-between items-center">
             <div className="flex-1">
                 <Link to="/" className="btn btn-ghost gap-2">
                     <ShoppingBagIcon className="size-5 text-primary"/>
