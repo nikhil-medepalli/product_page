@@ -3,8 +3,10 @@ import { Link } from "react-router";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
+import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
+  const { isSignedIn } = useAuth();
   const { data: products, isLoading, error } = useProducts();
 
   if (isLoading) return <LoadingSpinner />;
@@ -35,10 +37,19 @@ const Home = () => {
             <p className="py-4 text-base-content/60">
               Upload, discover, and connect with creators.
             </p>
-            <Link to="/create" className="btn btn-primary">
-              <SparklesIcon className="size-4" />
-              Start Selling
-            </Link>
+            {isSignedIn ? (
+              <Link to="/create" className="btn btn-primary">
+                <SparklesIcon className="size-4" />
+                Start Selling
+              </Link>
+            ) : (
+              <SignInButton mode="modal">
+                <button className="btn btn-primary">
+                  <SparklesIcon className="size-4" />
+                  Start Selling
+                </button>
+              </SignInButton>
+            )}
           </div>
         </div>
       </div>
