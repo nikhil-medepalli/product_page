@@ -3,11 +3,11 @@ import { Link } from "react-router";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
-import { useAuth } from "../context/AuthContext";
+import useAuthReq from "../hooks/useAuthReq";
 import { SignInButton } from "@clerk/clerk-react";
 
 const Home = () => {
-  const { isSignedIn } = useAuth();
+  const { isSignedIn } = useAuthReq();
   const { data: products, isLoading, error } = useProducts();
 
   if (isLoading) return <LoadingSpinner />;
