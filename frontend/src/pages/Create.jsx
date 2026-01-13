@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router"
 import { useCreateProduct } from "../hooks/useProducts"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ArrowLeftIcon, FileTextIcon, ImageIcon, SparklesIcon, TypeIcon } from "lucide-react"
 
 const Create = () => {
@@ -13,6 +13,12 @@ const Create = () => {
     description: "",
     imageUrl: ""
   })
+
+  const [imageError, setImageError] = useState(false)
+
+  useEffect(() => {
+    setImageError(false)
+  }, [formData.imageUrl])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -61,13 +67,13 @@ const Create = () => {
               />
             </label>
 
-            {formData.imageUrl && (
+            {formData.imageUrl && !imageError && (
               <div className="rounded-box overflow-hidden">
                 <img
                   src={formData.imageUrl}
                   alt="Preview"
                   className="w-full h-40 object-cover"
-                  onError={(e) => (e.target.style.display = "none")}
+                  onError={() => setImageError(true)}
                 />
               </div>
             )}

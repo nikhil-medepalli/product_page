@@ -4,6 +4,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
 import { useAuth } from "../context/AuthContext";
+import { SignInButton } from "@clerk/clerk-react";
 
 const Home = () => {
   const { isSignedIn } = useAuth();
@@ -60,7 +61,7 @@ const Home = () => {
           All Products
         </h2>
 
-        {products.length === 0 ? (
+        {!products || products.length === 0 ? (
           <div className="card bg-base-300">
             <div className="card-body items-center text-center py-16">
               <PackageIcon className="size-16 text-base-content/20" />
