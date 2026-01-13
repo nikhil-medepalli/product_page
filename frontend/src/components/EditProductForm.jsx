@@ -14,6 +14,9 @@ const EditProductForm = ({ product, isPending, isError, onSubmit }) => {
     description: product.description,
     imageUrl: product.imageUrl,
   });
+
+  const [imageError, setImageError] = useState(false);
+
   return (
     <div className="max-w-lg mx-auto">
       <Link to="/profile" className="btn btn-ghost btn-sm gap-1 mb-4">
@@ -56,19 +59,22 @@ const EditProductForm = ({ product, isPending, isError, onSubmit }) => {
                 className="grow"
                 value={formData.imageUrl}
                 onChange={(e) =>
-                  setFormData({ ...formData, imageUrl: e.target.value })
+                  {
+                    setFormData({ ...formData, imageUrl: e.target.value });
+                    setImageError(false);
+                  }
                 }
                 required
               />
             </label>
 
-            {formData.imageUrl && (
+            {formData.imageUrl && !imageError && (
               <div className="rounded-box overflow-hidden">
                 <img
                   src={formData.imageUrl}
                   alt="Preview"
                   className="w-full h-40 object-cover"
-                  onError={(e) => (e.currentTarget.style.display = "none")}
+                  onError={() => setImageError(true)}
                 />
               </div>
             )}

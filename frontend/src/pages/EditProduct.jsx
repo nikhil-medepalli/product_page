@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useAuth } from "@clerk/clerk-react";
 import { useProduct, useUpdateProduct } from "../hooks/useProducts";
 import LoadingSpinner from "../components/LoadingSpinner";
